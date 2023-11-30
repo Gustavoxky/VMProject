@@ -1,0 +1,15 @@
+/Users/macbook/VMProject/VMProject/bin/Debug/net7.0/VMProject
+/Users/macbook/VMProject/VMProject/bin/Debug/net7.0/VMProject.deps.json
+/Users/macbook/VMProject/VMProject/bin/Debug/net7.0/VMProject.runtimeconfig.json
+/Users/macbook/VMProject/VMProject/bin/Debug/net7.0/VMProject.dll
+/Users/macbook/VMProject/VMProject/bin/Debug/net7.0/VMProject.pdb
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.csproj.AssemblyReference.cache
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.AssemblyInfoInputs.cache
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.AssemblyInfo.cs
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.csproj.CoreCompileInputs.cache
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.dll
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/refint/VMProject.dll
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.pdb
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/VMProject.genruntimeconfig.cache
+/Users/macbook/VMProject/VMProject/obj/Debug/net7.0/ref/VMProject.dll
