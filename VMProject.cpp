@@ -64,27 +64,28 @@ public:
     CloudInstance(int id) : instanceID(id) {}
 
     void addResource(Resource* resource, int quantity) {
+        resources.reserve(resources.size() + quantity);
         for (int i = 0; i < quantity; ++i) {
             resources.push_back(resource);
         }
     }
 
     void allocateResources() {
-        for (Resource* resource : resources) {
+        for (const auto& resource : resources) {
             resource->allocate();
         }
         std::cout << "Recursos alocados para a instância " << instanceID << ".\n";
     }
 
     void deallocateResources() {
-        for (Resource* resource : resources) {
+        for (const auto& resource : resources) {
             resource->deallocate();
         }
         std::cout << "Recursos desalocados para a instância " << instanceID << ".\n";
     }
 
     ~CloudInstance() {
-        for (Resource* resource : resources) {
+        for (auto* resource : resources) {
             delete resource;
         }
     }
@@ -100,19 +101,13 @@ public:
     }
 
     CloudInstance& getInstance(int index) {
-        return instances[index];
+        return instances.at(index);
     }
 
-    void printStatus(const std::string& message) const {
-    std::cout << message << " para o serviço da nuvem. Status atual das instâncias:\n";
-    for (std::size_t i = 0; i < instances.size(); ++i) {
-        std::cout << "- Instância " << i << "\n";
+    const std::vector<CloudInstance>& getInstances() const {
+        return instances;
     }
-    std::cout << "\n";
-}
-
 };
-
 class CloudProvider {
 private:
     std::vector<CloudService> services;
@@ -123,7 +118,11 @@ public:
     }
 
     CloudService& getService(int index) {
-        return services[index];
+        return services.at(index);
+    }
+
+    const std::vector<CloudService>& getServices() const {
+        return services;
     }
 };
 
@@ -136,16 +135,32 @@ public:
 
     void requestResources(int serviceIndex, int instanceIndex) {
         std::cout << "Alocando recursos da nuvem:\n";
-        CloudService& service = provider.getService(serviceIndex);
-        CloudInstance& instance = service.getInstance(instanceIndex);
-        instance.allocateResources();
+        if (serviceIndex >= 0 && serviceIndex < provider.getServices().size()) {
+            CloudService& service = provider.getService(serviceIndex);
+            if (instanceIndex >= 0 && instanceIndex < service.getInstances().size()) {
+                CloudInstance& instance = service.getInstance(instanceIndex);
+                instance.allocateResources();
+            } else {
+                std::cout << "Erro: Índice de instância inválido.\n";
+            }
+        } else {
+            std::cout << "Erro: Índice de serviço inválido.\n";
+        }
     }
 
     void releaseResources(int serviceIndex, int instanceIndex) {
         std::cout << "Desalocando recursos da nuvem:\n";
-        CloudService& service = provider.getService(serviceIndex);
-        CloudInstance& instance = service.getInstance(instanceIndex);
-        instance.deallocateResources();
+        if (serviceIndex >= 0 && serviceIndex < provider.getServices().size()) {
+            CloudService& service = provider.getService(serviceIndex);
+            if (instanceIndex >= 0 && instanceIndex < service.getInstances().size()) {
+                CloudInstance& instance = service.getInstance(instanceIndex);
+                instance.deallocateResources();
+            } else {
+                std::cout << "Erro: Índice de instância inválido.\n";
+            }
+        } else {
+            std::cout << "Erro: Índice de serviço inválido.\n";
+        }
     }
 };
 
